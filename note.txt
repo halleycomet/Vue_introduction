@@ -16,4 +16,4 @@ index7.html
 大型项目使用webpack打包:
     Vue-cli脚手架工具,快速构建标注vue项目,迅速上手工程级别vue项目开发
     npm install --global vue-cli
-    vue init webpack Vue_introduction
+     vue init webpack Vue_introduction
