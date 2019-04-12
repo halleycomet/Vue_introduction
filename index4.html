@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if,v-show,v-for 指令</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!--<div v-if="show">hello world</div> 在dom上清除-->
+        <!--<div v-show="show">hello world</div> 没在dom上清除,加了div隐藏 频繁使用,效率更好-->
+        <div v-show="show">hello world</div>
+        <button @click="handleClick">toggle</button>
+        <ul>
+            <!--item of list中list就是vue实例中定义的-->
+            <!--:key="item" 提高性能 要求item不同-->
+            <!--如果item相同  <li v-for="(item,index) of list" :key="index">{{item}}</li>-->
+            <!--如果频繁变更 :key="index"有问题-->
+            <li v-for="(item,index) of list" :key="index">{{item}}</li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                show: true,
+                list: [1,2,3]
+            },
+            methods: {
+                handleClick: function(){
+                    this.show = !this.show;
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
