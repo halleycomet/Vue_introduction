@@ -1,0 +1,47 @@
+<!--
+有Vue之后不需要再有jquery的如下dom操作
+    var dom = document.getElementById("root")
+    dom.innerHTML = "hello world"
+
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+
+    <!--挂载点，模板，实例之间的关系-->
+        <!--div id="root"的标签叫做vue实例的挂载点 vue只处理挂载点下面的内容-->
+
+    <!--{{}} 插值表达式-->
+        <!--<div v-text="content"<></div> 不转义<h1>-->
+        <!--<div v-html="content"></div> 转义<h1>-->
+
+    <!--实例中的数据、事件、方法-->
+        <!--handleClick 在vue实例的methods里定义-->
+        <!--不用再想着去修改dom的内容，直接修改数据，vue会自动更新,面向数据编程-->
+        <!--v-on:可以简写为@-->
+    <div id="root">
+        <div v-on:click="handleClick">{{content}}</div>
+    </div>
+    <script>
+        new Vue({
+            el:"#root",
+            <!--模板也可以直接放在vue中 template:'<h1>hello {{msg}}</h1>',-->
+            data:{
+                content: "hello"
+            },
+            methods:{
+                handleClick: function(){
+                    this.content = "world"
+                }
+            }
+        })
+    </script>
+</body>
+</html>
