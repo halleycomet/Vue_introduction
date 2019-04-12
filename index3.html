@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性与监听器</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        姓:<input v-model="firstName"/>
+        名:<input v-model="lastName"/>
+        <div>{{fullName}}</div>
+        <div>{{count}}</div>
+    </div>
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                firstName: '',
+                lastName: '',
+                count: 0
+            },
+            //like react reselect, 一个属性由其他属性计算而来,依赖属性不变,会缓存
+            computed: {
+                fullName: function(){
+                    return this.firstName+' '+this.lastName
+                }
+            },
+            //监听器,每次修改姓名,count++
+            watch: {
+                fullName: function(){
+                    this.count ++
+                }
+            }
+        })
+
+    </script>
+
+</body>
+</html>

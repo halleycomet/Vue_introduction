@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>属性绑定和双向绑定</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!--属性绑定-->
+            <!--<div v-bind:title="title">-->
+            <!--v-bind 缩写为:-->
+        <div v-bind:title="'dell lee '+title">hello world</div>
+
+        <!--双向绑定-->
+            <!--单项绑定,数据决定页面的显示,页面无法决定数据的内容-->
+            <!--双向绑定<input v-model="content"/>-->
+
+        <input v-model="content"/>
+        <div>{{content}}</div>
+    </div>
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                title: "this is hello world",
+                content: "this is content"
+            }
+        })
+    </script>
+</body>
+</html>
