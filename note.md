@@ -23,6 +23,7 @@ index7.html
     npm install --global vue-cli
     vue init webpack Vue_introduction
 ```
+
 ### chrome调试
 
 ```bazaar
