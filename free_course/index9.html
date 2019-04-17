@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello world</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <!--{{}}插值表达式调用Vue中的变量-->
+    <div id="app">{{content}}</div>
+    <script>
+        <!--var dom = document.getElementById('app');-->
+        <!--dom.innerHTML = 'Hello world'-->
+        var app = new Vue({
+            // 实例负责管理的区域看,接管id为app的div标签
+            el: '#app',
+            data: {
+                content: 'hello world'
+            }
+        })
+
+        //定时更新内容,无需关注dom,只关注数据
+        setTimeout(function() {
+            app.$data.content = "bye world"
+            },2000)
+    </script>
+</body>
+</html>
