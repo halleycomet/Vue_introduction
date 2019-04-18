@@ -1,5 +1,7 @@
 * [free_course](#免费课程笔记)
 * [chrome调试](#chrome调试)
+* [vue指令](#vue指令)
+
 
 ### 免费课程笔记
 ```bazaar
@@ -34,10 +36,10 @@ command option j 打开chrome console
 
 ```
 
-- 指令
+### vue基本指令
 ```bazaar
 循环
-<li v-for="item in list">{{item}}</li>
+<li v-for="(item,index) in list">{{item}}</li>
 
 方法绑定
 <button v-on:click="handleBtnClick">提交</button>
@@ -59,4 +61,21 @@ command option j 打开chrome console
     - 只需关注Model与View层
     - Model层 data
     - View层 模板
+
+### 组件化
+- 全局组件 
+    - Vue.component("TodoItem") 使用时 <todo_item> 约定
+    - v-bind:content="item
+    - 子组件用props: ['content','index'] 接收外部传值 
+
+- 局部组件
+    - var TodoItem ={}
+    - 在 new vue中 components: {TodoItem: TodoItem}
     
+- 子组件传值
+    - <li @click='handleItemClick'>
+    - methods:{handleItemClick function(){this.$emit("delete",this.index)} }    
+
+- 父组件监听子组件
+    - @delete="handleItemDelete"> 监听子组件删除动作,后调用父组件方法
+    - handleItemDelete(index)      
