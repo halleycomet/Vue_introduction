@@ -149,7 +149,20 @@ data: function () {
 handleChange: function () {
                    this.total = this.$refs.one.number + this.$refs.two.number
                 }
-```       
+```   
+- 父组件给子组件传值
+```
+ 父组件
+ <counter :count="0"></counter>  //:count 把后面""变成js表达式,变成数值0
+ 
+ 子组件用props收
+ Vue.component('counter', {
+             props: ['count'],
+             template: '<div>{{count}}</div>'
+         })
+ 
+ 父组件给子组件传参,子组件不可修改,单向数据流       
+```    
     
 ### Vue实例
 - app.$el $代码vue的实例方法
