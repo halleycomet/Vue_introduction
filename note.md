@@ -163,6 +163,25 @@ handleChange: function () {
  
  父组件给子组件传参,子组件不可修改,单向数据流       
 ```    
+- 组件参数校验
+``` 
+props: {
+                content: {
+                    type:  [Number,String],
+                    required: true,
+                    default: 'default value',
+                    validator: function (value) {
+                        return (value.length > 5)
+                    }
+                }
+            }       
+```
+- 父组件监听原生事件,而不是子组件的事件
+``` 
+ <div id="root">
+        <child @click.native="handleClick"></child>
+    </div>
+```
     
 ### Vue实例
 - app.$el $代码vue的实例方法
