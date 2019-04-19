@@ -182,6 +182,26 @@ props: {
         <child @click.native="handleClick"></child>
     </div>
 ```
+
+- 第一层组件传值给第三层组件 非父子组件传值总线机制
+``` 
+//之后每个Vue对象都会有bus这个属性,并且都指向同一个Vue实例
+Vue.prototype.bus = new Vue() 
+
+//触发change事件
+methods: {
+                handleClick: function () {
+                    this.bus.$emit('change',this.selfContent)
+                }
+            },
+//监听change事件            
+            mounted: function () {
+                var this_ = this
+                this.bus.$on('change', function (msg) {
+                    this_.selfContent = msg
+                })
+            }
+```
     
 ### Vue实例
 - app.$el $代码vue的实例方法
