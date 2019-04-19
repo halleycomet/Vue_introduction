@@ -10,8 +10,8 @@
         <input type="text" v-model="inputValue"/>
         <button v-on:click="handleBtnClick">提交</button>
         <ul>
-           <todo-item v-bind:content="item"
-                      v-bind:index="index"
+           <todo-item :content="item"
+                      :index="index"
                       v-for="(item,index) in list"
                       @delete="handleItemDelete">
            </todo-item>
