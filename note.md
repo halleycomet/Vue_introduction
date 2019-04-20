@@ -202,6 +202,75 @@ methods: {
                 })
             }
 ```
+- 父组件使用插槽 slot
+``` 
+父组件给子组件传递html内容,通过参数传递很乱,还需要v-html和div才能生效
+<child>
+            <p>Comet</p>
+        </child>
+        
+Vue.component('child', {
+            template: '<div>' +
+                '<p>hello</p>' +
+                '<slot></slot>' +
+                '</div>'
+        })   
+
+父组件插入多个区域内容 具名插槽
+父组件:
+<body-content>
+            <div class="header" slot="header">header</div>
+            <div class="footer" slot="footer">footer</div>
+        </body-content>
+
+子组件:
+Vue.component('body-content', {
+            template: '<div>' +
+                '<slot name="header"></slot>' +
+                '<div class="content">content</div>' +
+                '<slot name="footer"></slot>' +
+                '</div>'
+        })            
+```
+- 父组件循环使用作用域插槽
+``` 
+父组件:
+ <child>
+            <template slot-scope="props">
+                <li>{{props.item}} -hello</li>
+            </template>
+        </child>
+子组件:
+template: '<div>' +
+                '<ul>' +
+                    '<slot v-for="item of list" :item=item>' +
+                    '</slot>' +
+                '</ul>' +
+                '</div>'        
+
+```
+- 动态组件 根据不同值加载不同组件
+``` 
+<div id="root">
+        <comment :is="type"></comment>
+        <botton @click="handleBtnClick">change</botton>
+    </div>
+    <script>
+        Vue.component('child-one', {
+            template: '<div>child-one</div>'
+        })
+
+        Vue.component('child-two', {
+            template: '<div>child-two</div>'
+        })
+```
+- 提高组件展示效率 v-once
+``` 
+有了v-once 组件就放在内存里不会被销毁
+Vue.component('child-one', {
+            template: '<div v-once>child-one</div>'
+        })
+```
     
 ### Vue实例
 - app.$el $代码vue的实例方法
