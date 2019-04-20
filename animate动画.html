@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS过渡动画效果</title>
+    <script src='./vue.js'></script>
+    <link rel="stylesheet" type="text/css" href="./animate.css">
+</head>
+<body>
+<div id="root">
+    <transition
+            enter-active-class="animated swing"
+            leave-active-class="animated shake"
+    >
+        <div v-show="show">hello world</div>
+    </transition>
+    <botton @click="handleClick">toggle</botton>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#root',
+        data: {
+            show: true
+        },
+        methods: {
+            handleClick: function () {
+                this.show = !this.show
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

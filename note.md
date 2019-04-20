@@ -7,7 +7,7 @@
 * [计算,方法,监听器](#计算,方法,监听器)
 * [Vue中的样式绑定](#Vue中的样式绑定)
 * [数组与对象set](#数组与对象set)
-* [vue指令](#vue指令)
+* [Vue动画](#Vue动画)
 
 
 ### 免费课程笔记
@@ -388,4 +388,78 @@ Vue.component('child-one', {
 
 - 给对象增加字段
     - Vue.set(vm.userInfo,"address","beijing")
-    - vm.$set(vm.userInfo,"address","beijing")     
+    - vm.$set(vm.userInfo,"address","beijing")
+
+### Vue动画
+- transition CSS3 过渡
+``` 
+  <transition name="fade">
+        <div v-show="show">hello world</div>
+    </transition>
+    
+   会自动通过name="fade"去找fade-enter-active和fade-leave-active
+   也可以自定义
+   enter-active-class="active"
+   leave-active-class="leave"
+```
+
+- 当包裹元素载入
+    - 动画执行时对包裹的部分增加两个class
+    - v-enter
+    - v-enter-active
+``` 
+.fade-enter {
+            opacity: 0;
+        }       
+.fade-enter-active {
+            transition: opacity 1s;
+        }
+fade-enter-active从动画开始就载入
+transition监控opacity的值,发现变化进行延时处理        
+```             
+- 当包裹元素隐藏
+    - v-leave-to 第二帧加入修改opacity
+    - v-leave-active
+``` 
+.fade-leave-to {
+            opacity: 0;
+        }
+        .fade-leave-active {
+            transition: opacity 2s;
+        }
+```    
+
+- keyframes动画
+``` 
+ @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .fade-enter-active {
+            transform-origin: left center;
+            animation: bounce-in 1s;
+        }
+        .fade-leave-active {
+            transform-origin: left center;
+            animation: bounce-in 1s reverse;
+        }
+```
+- Animate.css
+    - 提供了多种效果,无需上面那样自己实现
+``` 
+ <link rel="stylesheet" type="text/css" href="./animate.css">
+</head>
+<body>
+<div id="root">
+    <transition
+            enter-active-class="animated swing"
+            leave-active-class="animated shake"
+    >
+```
