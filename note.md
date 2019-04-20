@@ -463,3 +463,44 @@ transition监控opacity的值,发现变化进行延时处理
             leave-active-class="animated shake"
     >
 ```
+   - 刷些页面,第一次显示时也有动画
+``` 
+ <transition
+            appear
+            enter-active-class="animated swing"
+            leave-active-class="animated shake"
+            appear-active-class="animated swing"
+    >
+```    
+- Js动画 通过钩子实现
+``` 
+ <transition
+        name="fade"
+        @before-enter="handleBeforeEnter"
+        @enter="handleEnter"
+        @after-enter="handleAfterEnter"
+    >
+
+ handleBeforeEnter: function (el) {
+                el.style.color = 'red'
+            },
+            handleEnter: function (el,done) {
+                setTimeout(() => {
+                    el.style.color = 'green'
+                },2000)
+                setTimeout(() => {
+                    done()
+                },4000)
+            },
+            handleAfterEnter: function (el) {
+                el.style.color = "#000"
+            }    
+```
+- JS动画 velocity.js
+``` 
+<script src='./velocity.min.js'></script>
+
+handleEnter: function (el,done) {
+                Velocity(el,{opacity: 1}, {duration: 1000, complete: done})
+            },
+```
