@@ -504,3 +504,67 @@ handleEnter: function (el,done) {
                 Velocity(el,{opacity: 1}, {duration: 1000, complete: done})
             },
 ```
+- 多元素多组件动画
+``` 
+  <transition mode="out-in">
+            <component :is="type"></component>
+        </transition>
+       
+Vue.component('child', {
+            template: '<div>child</div>'
+        })
+        Vue.component('child-one', {
+            template: '<div>child-one</div>'
+        })
+
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                type: 'child'
+            },
+            methods: {
+                handleClick: function () {
+                    this.type = (this.type === 'child' ? 'child-one': 'child')
+                }
+            }
+        })        
+
+```
+- 列表过渡
+``` 
+ <style>
+        .v-enter, .v-leave-to {
+            opacity: 0;
+        }
+        .v-enter-active, .v-leave-active {
+            transition: opacity 1s;
+        }
+    </style>
+    
+ <transition-group>
+            <div v-for="item of list" :key="item.id">{{item.title}}</div>
+        </transition-group>
+```
+- 动画封装
+``` 
+<fade :show="show">
+            <div>hello world</div>
+        </fade>
+        
+//全部包括样式都封装起来
+        Vue.component('fade', {
+            props: ['show'],
+            template: '<transition @before-enter="handleBeforeEnter" @enter="handleEnter"><slot v-if="show"></slot></transition>',
+            methods: {
+                handleBeforeEnter: function (el) {
+                   el.style.color = 'red'
+                },
+                handleEnter: function (el,done) {
+                    setTimeout(() => {
+                        el.style.color = 'green'
+                        done()
+                    },2000)
+                }
+            }
+        })        
+```
