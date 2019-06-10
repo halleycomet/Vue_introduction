@@ -130,8 +130,10 @@ v-if=false div标签在页面删除
     - 这样解决 <tr is="row"><tr/> 
     - 类似还有<ul><li is="row"> 
     - 类似还有<select><option is="row">
+    
 
 - 子组件中data必须是函数
+
 ```
 函数方法可以保证data是新对象不共享
 data: function () {
