@@ -127,10 +127,6 @@ v-if=false div标签在页面删除
 
 - table中tbody放组件问题
     - 浏览器要求tbody里必须放tr,<table><tbody><tr>,所以放子组件row会有问题
-    - 这样解决 <tr is="row"><tr/> 
-    - 类似还有<ul><li is="row"> 
-    - 类似还有<select><option is="row">
-    
 
 - 子组件中data必须是函数
 
